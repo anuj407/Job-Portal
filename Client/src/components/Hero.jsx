@@ -2,6 +2,13 @@ import search from '../assets/search_icon.svg'
 import location from '../assets/location_icon.svg'
 import { useContext, useRef } from 'react'
 import { AppContext } from '../context/AppContext'
+import microsoft from '../assets/microsoft_logo.svg'
+import walmart from '../assets/walmart_logo.svg'
+import accenture from '../assets/accenture_logo.png'
+import samsung from '../assets/samsung_logo.png'
+import amazon from '../assets/amazon_logo.png'
+import adobe from '../assets/adobe_logo.png'
+
 function Hero() {
   const {setSearchFilter,setIsSearched} = useContext(AppContext)
   const setTitle = useRef(null)
@@ -17,6 +24,7 @@ function Hero() {
       location: setLocation.current.value
     })
   }
+  const logos = [microsoft,walmart,accenture,samsung,amazon,adobe]
   return (
     <div className="container my-10 2xl:px-20 mx-auto">
         <div className=" bg-gradient-to-r from-purple-800 to-purple-950  rounded-xl text-white text-center py-[3.7rem] flex flex-col gap-y-8">
@@ -33,6 +41,13 @@ function Hero() {
                 <button onClick={()=>onSearch()} className='px-7 py-2 bg-blue-600 text-[1rem] rounded text-white'>Search</button>
               </div>
             </div>
+        </div>
+        <div className="h-20 border-zinc-300 shadow-xl rounded-xl border-2 flex py-8 pl-4 mt-6 gap-16 items-center">
+          <h1 className='text-black text-[1.5rem] font-medium'>Trusted By</h1>
+          {logos.map((value,index)=>
+          <img key={index} className='w-24' src={value} alt="" />
+          )}
+         
         </div>
     </div>
   )
