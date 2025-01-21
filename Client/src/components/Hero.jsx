@@ -26,7 +26,7 @@ function Hero() {
   }
   const logos = [microsoft,walmart,accenture,samsung,amazon,adobe]
   return (
-    <div className="container my-10 2xl:px-20 mx-auto">
+    <div className="container my-10 px-3 2xl:px-20 mx-auto">
         <div className=" bg-gradient-to-r from-purple-800 to-purple-950  rounded-xl text-white text-center py-[3.7rem] flex flex-col gap-y-8">
             <h1 className="text-[2.5rem] font-semibold">Over 10,000+ jobs to apply</h1>
             <p className="w-1/2 mx-auto text-[0.9rem]">Your Next Big Career Move Starts Right Here - Explore the Best Job Opportunities and Take the First Step Toward Your Future!</p>
@@ -42,11 +42,13 @@ function Hero() {
               </div>
             </div>
         </div>
-        <div className="h-20 border-zinc-300 shadow-xl rounded-xl border-2 flex py-8 pl-4 mt-6 gap-16 items-center">
-          <h1 className='text-black text-[1.5rem] font-medium'>Trusted By</h1>
-          {logos.map((value,index)=>
-          <img key={index} className='w-24' src={value} alt="" />
-          )}
+        <div className=" border-zinc-300 shadow-xl rounded-xl border-2 p-4 mt-6 ">
+          <h1 className='text-black  text-[1.5rem] font-medium'>Trusted By</h1>
+          <div className="flex max-sm:mt-2 gap-x-14 gap-y-6 flex-wrap">
+            {logos.map((value,index)=>
+            <img key={index} className='w-20' src={value} alt="" />
+            )}
+          </div>
          
         </div>
     </div>
