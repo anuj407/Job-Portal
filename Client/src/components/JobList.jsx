@@ -1,12 +1,13 @@
 import { useContext, useState } from "react"
 import { AppContext } from "../context/AppContext"
 import cross_icon from "../assets/cross_icon.svg"
-import {JobCategories} from "../assets/assets.js"
+import {assets, JobCategories} from "../assets/assets.js"
 import {JobLocations} from "../assets/assets.js"
 import JobCard from "./JobCard.jsx"
 function JobList() {
   const {isSearched,searchFilter, setSearchFilter,jobs}= useContext(AppContext)
   const [ showfilter, setShowFilter] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
   return (
     <div className="container mx-auto flex max-sm:flex-col">
       {/* Sidebar  */}
@@ -67,14 +68,32 @@ function JobList() {
       </div>
       {/* Job List */}
       <div className="w-screen sm:w-3/4">
-        <h1 className="max-sm:m-4 text-3xl font-semibold">Latest Jobs</h1>
+        <h1 className="max-sm:m-4 text-3xl font-semibold" id="job-list">Latest Jobs</h1>
         <p className="max-sm:ml-4">Get your desired from top companies</p>
         <div className="max-sm:w-4/5 grid grid-cols-1 max-sm: mx-auto max-lg:pr-3 lg:grid-cols-2 xl:grid-cols-3 gap-3 mt-5">
         {
-          jobs.map((job, index)=>
+          jobs.slice((currentPage-1)*6,(currentPage)*6).map((job, index)=>
           <JobCard key={index} job={job} />
         )}
         </div>
+        {/* Pagination */}
+        {
+          jobs.length > 0 && (
+            <div className="flex  items-center justify-center space-x-4 mt-10">
+              <a href="#job-list">
+                 <img  onClick={currentPage > 1 ? ()=> setCurrentPage(Math.max(currentPage-1),1): null} src={assets.left_arrow_icon} alt="" />
+              </a>
+              {Array.from({length:Math.ceil(jobs.length/6)}).map((__, index)=>
+                   <a key={index} href="#job-list">
+                      <button onClick={()=>setCurrentPage(index+1)} className={`w-10 h-10 flex justify-center items-center border border-gray-300 rounded ${currentPage === index+1 ? 'bg-blue-100 text-blue-500' : 'text-gray-500'}`}>{index +1}</button>
+                   </a>
+               )}
+               <a href="#job-list">
+                 <img onClick={()=>setCurrentPage(Math.min(currentPage+1,Math.ceil(jobs.length/6)))} src={assets.right_arrow_icon} alt="" />
+               </a>
+            </div>
+          )
+        }
       </div>
     </div>
   )
