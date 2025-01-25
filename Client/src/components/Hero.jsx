@@ -42,8 +42,8 @@ function Hero() {
               </div>
             </div>
         </div>
-        <div className=" border-zinc-300 shadow-xl rounded-xl border-2 p-4 mt-6 sm:flex sm:gap-16">
-          <h1 className='text-black  text-[1.5rem] font-medium'>Trusted By</h1>
+        <div className=" border-zinc-300 shadow-xl rounded-xl border-2 p-4 py-6 mt-6 sm:flex sm:gap-16">
+          <h1 className='text-black  text-[1.2rem] font-medium'>Trusted By</h1>
           <div className=" flex max-sm:justify-center max-sm:mt-2 gap-x-14 gap-y-6 flex-wrap">
             {logos.map((value,index)=>
             <img key={index} className='w-20' src={value} alt="" />
